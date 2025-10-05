@@ -6,7 +6,7 @@ app.use(express.json());
 // Teacher View Route
 app.get("/teacher-view", async (req, res) => {
   let myDB = await connectDB();
-  let teacherCollection = myDB.collection("teachers");
+  let teacherCollection = myDB.collection("teacher");
   const data = await teacherCollection.find().toArray();
   res.status(200).json({ msg: "Teacher List", data });
 });
