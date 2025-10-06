@@ -160,4 +160,58 @@
   },
 ];
 
-// Question 10 - ( Match All Operators of aggregation )
+// Question 10 - Who has Ragistred the most recently ( Match All Operators of aggregation )
+[
+  {
+    $sort: {
+      registered: -1,
+    },
+  },
+  { $limit: 3 },
+  {
+    $project: {
+      name: 1,
+      age: 1,
+      registered: 1,
+    },
+  },
+];
+
+// Question 11 - Categarize Users by their Favorite Frouits ( Match All Operators of aggregation )
+[
+  {
+    $group: {
+      _id: "$favoriteFruit",
+      users: { $push: "$name" },
+    },
+  },
+];
+
+// Question 12 - How many users have 'ad' as the second tag in their list of tags ( Match All Operators of aggregation )
+[
+  {
+    $match: {
+      "tags.1": "ad",
+    },
+  },
+  { $count: "secondTagsAd" },
+];
+
+// Question 13 - Find users who have both 'enim' and 'id' as  their tags ( Match All Operators of aggregation )
+
+[
+  {
+    $match: {
+      tags: { $all: ["enim", "id"] },
+    },
+  },
+][
+  // Question 14 - List all companies Located in USA with their corrosponding user count ( Match All Operators of aggregation )
+
+  ({
+    $match: {
+      "company.location.country": "USA",
+    },
+  },
+  { $count: "totalAmerican" })
+];
