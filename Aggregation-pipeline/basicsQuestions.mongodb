@@ -117,4 +117,47 @@
   },
 ];
 
-// Question 7 -  ( Match and Project Pipeline )
+// Question 7 - How many users have 'enim' as one of their tags? ( Match and Project Pipeline )
+
+[
+  {
+    $match: {
+      tags: "enim",
+    },
+  },
+  {
+    $count: "tagWithEnim",
+  },
+];
+
+// Question 8 - What are the name and age of User who are inactive and Have 'veilt' as a tag ( Match and Project Pipeline )
+
+[
+  {
+    $match: {
+      isActive: false,
+      tags: "velit",
+    },
+  },
+  {
+    $project: {
+      name: 1,
+      age: 1,
+    },
+  },
+];
+
+// Question 9 - How many users Have Phone Number starting with '+1' (940) ? ( Match and project pipeline )
+
+[
+  {
+    $match: {
+      "company.phone": /^\+1 \(940\)/,
+    },
+  },
+  {
+    $count: "TotalUsChodus",
+  },
+];
+
+// Question 10 - ( Match All Operators of aggregation )
