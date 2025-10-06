@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from "./db.js";
 const app = express();
 
+app.use(e);
 app.use(express.json());
 // Teacher View Route
 app.get("/teacher-view", async (req, res) => {
