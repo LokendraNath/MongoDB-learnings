@@ -1,4 +1,6 @@
-// Question 1 - What is total active users
+// ye notes mongodb mongo db pipeline stage ke code hai jo mai notes ke liye yaha likh rha hu, jo users collection se hai
+
+// Question 1 - What is total active users ( Simple )
 
 [
   {
@@ -10,3 +12,37 @@
     $count: "active-users",
   },
 ];
+
+// Question 2 - What is average age of all users ( GROUPING )
+
+[
+  {
+    $group: {
+      _id: null,
+      averageAge: {
+        $avg: "$age",
+      },
+    },
+  },
+];
+
+// Question 3 - List the top 5 most common favorite fruits Amount ( GROUPING )
+[
+  {
+    $group: {
+      _id: "$favoriteFruit",
+      count: {
+        $sum: 1, // ye count +1 karne ke liye hai
+      },
+    },
+  },
+  {
+    $sort: {
+      count: -1, // for desc (-1), acs (1)
+    },
+  },
+  {
+    $limit: 2,
+  },
+];
+// Question 4 - List the top 5 most common favorite fruits Amount ( GROUPING sum & more )
