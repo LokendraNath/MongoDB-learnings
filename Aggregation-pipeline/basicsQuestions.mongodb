@@ -45,4 +45,34 @@
     $limit: 2,
   },
 ];
-// Question 4 - List the top 5 most common favorite fruits Amount ( GROUPING sum & more )
+
+// Question 4 - find the total num of male and female ( GROUPING sum & more )
+
+[
+  {
+    $group: {
+      _id: "$gender",
+      genderCount: {
+        $sum: 1,
+      },
+    },
+  },
+];
+
+// Question 5 - which country have highest number of ragister users ( GROUPING sum & more )
+
+[
+  {
+    $group: {
+      _id: "$company.location.country",
+      countryUserCount: {
+        $sum: 1,
+      },
+    },
+  },
+  {
+    $sort: {
+      count: -1,
+    },
+  },
+];
